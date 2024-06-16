@@ -1,0 +1,38 @@
+  <h1 class="text-center mt-5">Login</h1>
+
+  <form class="text-center" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field class="mt-5">
+      <mat-label>Correo electr&oacute;nico</mat-label>
+      <input type="email" matInput formControlName="email" placeholder="Correo electr&oacute;nico" value="email">
+      <mat-hint *ngIf="isValidField('email')" class="text-danger">Correo no valido</mat-hint>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="mt-3">
+        <mat-label>Contraseña</mat-label>
+        <input type="password" matInput formControlName="password" placeholder="Correo electr&oacute;nico" value="password">
+        <mat-hint *ngIf="isValidField('password')" class="text-danger">Contraseña debe ser de m&iacute;nimo 6 caracteres</mat-hint>
+    </mat-form-field>
+
+    <div class="p-4 text-center">
+      <button mat-flat-button color="primary" type="submit">
+        <mat-icon>save</mat-icon>
+        Ingresar
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="errorMessage" class="text-danger text-center mb-4">
+    {{errorMessage}}
+  </div>
+
+  <a routerLink="/auth/recovery" class="text-center">Olvidaste tu contraseña?</a>
+
+  <div class="flex justify-content-end p-2">
+    <a routerLink="/auth/register" class="btn btn-sm btn-success">Crear cuenta</a>
+  </div>
+
+  <h1>Prueba</h1>
+<pre>{{this.loginForm.value | json}}</pre>
+<pre>{{this.loginForm.errors | json}}</pre>

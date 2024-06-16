@@ -1,0 +1,79 @@
+<!-- si existe el heroe (editar) muestra 'Editar', caso contrario 'Agregar' -->
+<h1 class="mt-5">
+  <strong>
+    Agregar
+  </strong>
+</h1>
+
+<mat-divider class="mb-2"></mat-divider>
+
+<div class="grid">
+  <!-- Bloque del formulario -->
+  <div class="mt-3 col-12 col-sm-6">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="p-2">
+          <!-- {{ card.card.name }} -->
+        </mat-card-title>
+      </mat-card-header>
+      <!-- <img [src]="imagenRuta" alt="card.card.name"> -->
+
+      <mat-card-content>
+
+        <form class="grid" [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="col-12 col-sm-6">
+            <mat-label>Tarjeta</mat-label>
+            <mat-select required formControlName="cardId">
+              <mat-option *ngFor="let card of cards" [value]="card.id">
+                {{ card.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col-12 col-sm-6">
+            <mat-label>Descripci&oacute;n</mat-label>
+            <input matInput type="text" required formControlName="description">
+          </mat-form-field>
+
+          <mat-form-field class="col-12 col-sm-6">
+            <mat-label>Condici&oacute;n</mat-label>
+            <input matInput type="text" required formControlName="condition">
+          </mat-form-field>
+
+          <mat-form-field class="col-12 col-sm-6">
+            <mat-label>Precio</mat-label>
+            <input matInput type="number" required formControlName="price">
+          </mat-form-field>
+
+        </form>
+
+        <mat-card-actions>
+            <span class="spacer"></span>
+
+            <button mat-raised-button color="primary" (click)="onSubmit()">
+              <mat-icon>save</mat-icon>
+              Guardar
+            </button>
+          </mat-card-actions>
+          <!-- </div> -->
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- <div class="col-6 sm:col-6">
+    <mat-card>
+      <img [src]="currentCard.card.imageUrl" alt="imagen de la tarjeta" mat-card-image>
+    </mat-card>
+  </div> -->
+</div>
+
+<pre>
+  Valores: {{ cardForm.value | json }}
+</pre>
+<pre>
+  {{this.cardForm.controls['cardId'].value}}
+</pre>
+<pre>
+  Tarjetas:{{cards |json}}
+</pre>
